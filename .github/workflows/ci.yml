@@ -1,0 +1,32 @@
+name: CI Pipeline 
+on:
+  push:           # Trigger: bei jedem Commit (push)
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Repository-Code laden
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      # 2. Python-Version einrichten
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install uv 
+          # installiere exakt das, kein dev, was im lockfile steht
+          #  aktuell ist in den dependencies pytest, dsa ist OK
+          #  ansonsten müsste dev mitinstalliert werden, falls pytest
+          #  in den dev-dependencies wäre
+          uv sync
+      - name: Run Linter
+        run: uv run ruff check .
+      - name: Run Tests
+        run: uv run -m pytest --maxfail=1 --disable-warnings -q
