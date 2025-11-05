@@ -1,0 +1,12 @@
+name: Hello GitHub Actions
+on:
+  push:           # Trigger: bei jedem Commit (push)
+    branches: [ main ]
+jobs:
+  say-hello:      # Job-Name
+    runs-on: ubuntu-latest   # Runner-Umgebung (Ubuntu-VM)
+    steps:         # Schritte innerhalb des Jobs
+      - name: Begrüßung
+        run: echo "Hallo von GitHub Actions!"
+      - name: Aktuelles Datum
+        run: date
