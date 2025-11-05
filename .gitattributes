@@ -1,0 +1,18 @@
+# Einheitliche Zeilenenden
+* text=auto
+# Python-Dateien immer als Text
+*.py text eol=lf
+# Binärdateien
+*.png binary
+*.jpg binary
+*.pdf binary
+# Lockfiles nicht mergen (ours gewinnt immer)
+uv.lock merge=ours
+poetry.lock merge=ours
+# Plattformübergreifende Skripte
+*.sh text eol=lf
+*.bat text eol=crlf
+# Dateien beim Export (git archive) ignorieren
+/tests export-ignore
+/.github export-ignore
+/docs export-ignore

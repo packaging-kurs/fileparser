@@ -2,7 +2,9 @@
 
 
 ## Installation
-
+uv sync
+pre-commit install
+pre-commit run --all-files
 
 ## Nutzung als selbststehendes Programm
 Der folgende Aufruf funktioniert nur deshalb, weil '__main__.py' implementiert ist.
@@ -20,3 +22,7 @@ from fileparser import parse
 
 ## Testen
 uv run pytest -v -s
+
+## aus github installieren
+
+pip install git+https://github.com/packaging-kurs/fileparser.git@main

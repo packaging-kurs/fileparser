@@ -10,6 +10,8 @@ repos:
     hooks:
       - id: mypy
 
+  # entry: wird ausgeführt, wenn pre-commit läuft
+  # in diesem Fall wird uv run pytest, damit
   - repo: local
     hooks:
     - id: pytest
